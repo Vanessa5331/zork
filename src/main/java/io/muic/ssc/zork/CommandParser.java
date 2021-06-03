@@ -28,10 +28,8 @@ public class CommandParser {
         String cleanedInput = input.trim();
         String inputToCommand = matchInputToCommand(cleanedInput);
         Command command = CommandFactory.get(inputToCommand);
-        if(command.numArgs() > 0){
-            //TODO: check for empty space after command
+        if(command != null && command.numArgs() > 0){
             String argString = cleanedInput.substring(inputToCommand.length());
-            System.out.println(argString);
             return Arrays.asList(inputToCommand, argString);
         }else{
             return Arrays.asList(inputToCommand);

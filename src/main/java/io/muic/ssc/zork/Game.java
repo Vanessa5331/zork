@@ -18,6 +18,8 @@ public class Game {
         Command command = CommandFactory.get(parsedCommands.get(0));
         if(command != null){
             command.execute(this, parsedCommands.subList(1, parsedCommands.size()));
+        }else{
+            System.out.println("Unknown command");
         }
     }
 
