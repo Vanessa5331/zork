@@ -8,7 +8,7 @@ public class ExitCommand implements Command{
 
     @Override
     public int numArgs() {
-        return 1;
+        return 0;
     }
 
     @Override
