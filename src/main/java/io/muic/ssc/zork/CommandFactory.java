@@ -14,7 +14,7 @@ public class CommandFactory {
         for(CommandType commandType: CommandType.values()){
             try {
                 Command command = commandType.getCommandClass().getConstructor().newInstance();
-                COMMAND_MAP.put(commandType.getCommandType(), command);
+                COMMAND_MAP.put(commandType.getCommandName(), command);
             } catch (InstantiationException | InvocationTargetException | NoSuchMethodException | IllegalAccessException e) {
                 e.printStackTrace();
             }
