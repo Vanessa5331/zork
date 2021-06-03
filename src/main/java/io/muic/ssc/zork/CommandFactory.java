@@ -1,23 +1,20 @@
 package io.muic.ssc.zork;
 
 import io.muic.ssc.zork.command.Command;
-import io.muic.ssc.zork.command.ExitCommand;
+import io.muic.ssc.zork.command.CommandType;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class CommandFactory {
-
-    private static final List<Class<? extends Command>> REGISTERED_COMMANDS = Arrays.asList(ExitCommand.class);
 
     private static final Map<String, Command> COMMAND_MAP = new HashMap<>();
 
     static {{
-        for(Class<? extends Command> commandClass: REGISTERED_COMMANDS){
+        for(CommandType commandType: CommandType.values()){
             try {
-                Command command = commandClass.getDeclaredConstructor().newInstance();
-                COMMAND_MAP.put(command.getCommand(), command);
+                Command command = commandType.getCommandClass().getConstructor().newInstance();
+                COMMAND_MAP.put(commandType.getCommandType(), command);
             } catch (InstantiationException | InvocationTargetException | NoSuchMethodException | IllegalAccessException e) {
                 e.printStackTrace();
             }
@@ -29,6 +26,6 @@ public class CommandFactory {
     }
 
     public static List<String> getAllCommands(){
-        return COMMAND_MAP.keySet().stream().collect(Collectors.toList());
+        return new ArrayList<>(COMMAND_MAP.keySet());
     }
 }
