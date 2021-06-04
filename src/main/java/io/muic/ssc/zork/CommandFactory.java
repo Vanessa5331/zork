@@ -9,10 +9,19 @@ import java.util.*;
 public class CommandFactory {
 
     private static final Map<String, CommandType> COMMAND_MAP = new HashMap<>();
+    private static final Set<String> START_COMMAND = new HashSet<>();
+    private static final Set<String> MID_COMMAND = new HashSet<>();
 
     static {{
         for(CommandType commandType: CommandType.values()){
-            COMMAND_MAP.put(commandType.getCommandName(), commandType);
+            String commandName = commandType.getCommandName();
+            COMMAND_MAP.put(commandName, commandType);
+            if(commandType.isAvailableStartGame()){
+                START_COMMAND.add(commandName);
+            }
+            if(commandType.isAvailableMidGame()){
+                MID_COMMAND.add(commandName);
+            }
         }
     }}
 
@@ -28,7 +37,11 @@ public class CommandFactory {
         return COMMAND_MAP.get(commandName);
     }
 
-    public static List<String> getAllCommands(){
-        return new ArrayList<>(COMMAND_MAP.keySet());
+    public static List<String> getStartCommands(){
+        return new ArrayList<>(START_COMMAND);
+    }
+
+    public static List<String> getMidCommands(){
+        return new ArrayList<>(MID_COMMAND);
     }
 }

@@ -9,14 +9,14 @@ import java.util.List;
 
 public class CommandParser {
 
-    private List<String> allCommandsSortedByLength = new ArrayList<>();
-    {
-        allCommandsSortedByLength.addAll(CommandFactory.getAllCommands());
-        allCommandsSortedByLength.sort(Comparator.comparingInt(String::length));
-    }
-
-    private String matchInputToCommand(String input){
-        for(String command: allCommandsSortedByLength){
+    private String matchInputToCommand(String input, boolean isRunning){
+        List<String> commands;
+        if(!isRunning){
+            commands = CommandFactory.getStartCommands();
+        }else{
+            commands = CommandFactory.getMidCommands();
+        }
+        for(String command: commands){
             if(input.startsWith(command)){
                 return command;
             }
@@ -24,9 +24,9 @@ public class CommandParser {
         return null;
     }
 
-    public List<String> parse(String input){
+    public List<String> parse(String input, boolean isRunning){
         String cleanedInput = input.trim();
-        String inputToCommand = matchInputToCommand(cleanedInput);
+        String inputToCommand = matchInputToCommand(cleanedInput, isRunning);
         if(inputToCommand != null) {
             String argString = cleanedInput.substring(inputToCommand.length()).trim();
             return Arrays.asList(inputToCommand, argString);
