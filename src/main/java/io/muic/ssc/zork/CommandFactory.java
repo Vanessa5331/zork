@@ -19,8 +19,7 @@ public class CommandFactory {
     public static Command getCommand(String commandName){
         try{
             return COMMAND_MAP.get(commandName).getCommandClass().getConstructor().newInstance();
-        } catch (InstantiationException | InvocationTargetException | NoSuchMethodException | IllegalAccessException e) {
-            e.printStackTrace();
+        } catch (NullPointerException | InstantiationException | InvocationTargetException | NoSuchMethodException | IllegalAccessException e) {
             return null;
         }
     }
