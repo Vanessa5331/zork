@@ -10,13 +10,14 @@ public class Game {
     private GameOutput output = new GameOutput();
     private CommandParser commandParser = new CommandParser();
     private boolean isRunning;
+    private Player player;
 
     public void init(){
         Scanner in = new Scanner(System.in);
         System.out.print("Enter Your Name\n>>> ");
         String name = in.nextLine();
 
-        Player player = new Player(name);
+        player = new Player(name);
 
         isRunning = true;
     }
@@ -36,6 +37,10 @@ public class Game {
 
     public GameOutput getOutput() {
         return output;
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 
     public void exit(){
