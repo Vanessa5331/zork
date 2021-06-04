@@ -27,9 +27,8 @@ public class CommandParser {
     public List<String> parse(String input){
         String cleanedInput = input.trim();
         String inputToCommand = matchInputToCommand(cleanedInput);
-        Command command = CommandFactory.get(inputToCommand);
-        if(command != null && command.numArgs() > 0){
-            String argString = cleanedInput.substring(inputToCommand.length());
+        if(inputToCommand != null) {
+            String argString = cleanedInput.substring(inputToCommand.length()).trim();
             return Arrays.asList(inputToCommand, argString);
         }else{
             return Arrays.asList(inputToCommand);

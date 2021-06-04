@@ -8,21 +8,25 @@ import java.util.*;
 
 public class CommandFactory {
 
-    private static final Map<String, Command> COMMAND_MAP = new HashMap<>();
+    private static final Map<String, CommandType> COMMAND_MAP = new HashMap<>();
 
     static {{
         for(CommandType commandType: CommandType.values()){
-            try {
-                Command command = commandType.getCommandClass().getConstructor().newInstance();
-                COMMAND_MAP.put(commandType.getCommandName(), command);
-            } catch (InstantiationException | InvocationTargetException | NoSuchMethodException | IllegalAccessException e) {
-                e.printStackTrace();
-            }
+            COMMAND_MAP.put(commandType.getCommandName(), commandType);
         }
     }}
 
-    public static Command get(String command){
-        return COMMAND_MAP.get(command);
+    public static Command getCommand(String commandName){
+        try{
+            return COMMAND_MAP.get(commandName).getCommandClass().getConstructor().newInstance();
+        } catch (InstantiationException | InvocationTargetException | NoSuchMethodException | IllegalAccessException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static CommandType getCommandType(String commandName){
+        return COMMAND_MAP.get(commandName);
     }
 
     public static List<String> getAllCommands(){
