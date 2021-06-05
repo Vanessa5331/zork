@@ -1,17 +1,13 @@
 package io.muic.ssc.zork;
 
-import io.muic.ssc.zork.command.Command;
-
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 
 public class CommandParser {
 
-    private String matchInputToCommand(String input, boolean isRunning){
+    private String matchInputToCommand(String input, boolean isPlaying){
         List<String> commands;
-        if(!isRunning){
+        if(!isPlaying){
             commands = CommandFactory.getStartCommands();
         }else{
             commands = CommandFactory.getMidCommands();
@@ -24,9 +20,9 @@ public class CommandParser {
         return null;
     }
 
-    public List<String> parse(String input, boolean isRunning){
+    public List<String> parse(String input, boolean isPlaying){
         String cleanedInput = input.trim();
-        String inputToCommand = matchInputToCommand(cleanedInput, isRunning);
+        String inputToCommand = matchInputToCommand(cleanedInput, isPlaying);
         if(inputToCommand != null) {
             String argString = cleanedInput.substring(inputToCommand.length()).trim();
             return Arrays.asList(inputToCommand, argString);
