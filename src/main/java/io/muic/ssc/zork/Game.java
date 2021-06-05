@@ -7,8 +7,9 @@ import java.util.Scanner;
 
 public class Game {
 
-    private GameOutput output = new GameOutput();
-    private CommandParser commandParser = new CommandParser();
+    private final Scanner in = new Scanner(System.in);
+    private final GameOutput output = new GameOutput();
+    private final CommandParser commandParser = new CommandParser();
     private boolean isRunning, isPlaying;
     private Player player;
 
@@ -19,7 +20,6 @@ public class Game {
     }
 
     public void start(){
-        Scanner in = new Scanner(System.in);
         System.out.print("Enter Your Name\n>>> ");
         String name = in.nextLine();
 
@@ -49,8 +49,13 @@ public class Game {
         return player;
     }
 
+    public void quit(){
+        isPlaying = false;
+    }
+
     public void exit(){
         System.exit(0);
+        in.close();
         isRunning = false;
     }
 

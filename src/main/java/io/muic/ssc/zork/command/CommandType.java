@@ -3,7 +3,8 @@ package io.muic.ssc.zork.command;
 public enum CommandType {
     EXIT("exit", ExitCommand.class, 0, true, false),
     HELP("help", HelpCommand.class, 0, true, true),
-    INFO("info", InfoCommand.class, 0, false, true);
+    INFO("info", InfoCommand.class, 0, false, true),
+    QUIT("quit", QuitCommand.class, 0, false, true);
 
     private final String commandName;
     private final Class<? extends Command> commandClass;
