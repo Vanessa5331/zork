@@ -5,6 +5,7 @@ public enum CommandType {
     HELP("help", HelpCommand.class, 0, true, true),
     INFO("info", InfoCommand.class, 0, false, true),
     PLAY("play", PlayCommand.class, 1, true, false),
+    GO("go", GoCommand.class, 1, false, true),
     QUIT("quit", QuitCommand.class, 0, false, true);
 
     private final String commandName;
