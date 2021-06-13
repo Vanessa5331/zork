@@ -1,5 +1,6 @@
 package io.muic.ssc.zork.item;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 public class ItemFactory {
@@ -18,6 +19,17 @@ public class ItemFactory {
             }
         }
     }}
+
+    public static Item getItem(String itemName) {
+        if(ITEM_MAP.containsKey(itemName)) {
+            try {
+                return ITEM_MAP.get(itemName).getItemClass().getConstructor().newInstance();
+            } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
 
     public static List<String> getWeapons(){
         return new ArrayList<>(WEAPON_ITEM);
