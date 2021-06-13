@@ -11,6 +11,10 @@ public enum MapType {
         this.mapClass = mapClass;
     }
 
+    public String getMapName() {
+        return mapName;
+    }
+
     public Class<? extends Map> getMapClass() {
         return mapClass;
     }

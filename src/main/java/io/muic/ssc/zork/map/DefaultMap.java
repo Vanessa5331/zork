@@ -5,6 +5,7 @@ import io.muic.ssc.zork.item.ItemFactory;
 public class DefaultMap implements Map{
 
     public DefaultMap() {
+        System.out.println("Creating Default Map\nA friendly map for beginners...");
         create();
     }
 

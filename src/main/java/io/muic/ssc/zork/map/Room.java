@@ -3,6 +3,7 @@ package io.muic.ssc.zork.map;
 import io.muic.ssc.zork.item.Item;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -14,6 +15,7 @@ public class Room {
     public Room(String description) {
         this.description = description;
         possibleExits = new HashMap<>();
+        itemList = new HashSet<>();
     }
 
     public void setExits(String direction, Room neighbor) {

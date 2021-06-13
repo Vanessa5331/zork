@@ -25,9 +25,12 @@ public class CommandParser {
         String inputToCommand = matchInputToCommand(cleanedInput, isPlaying);
         if(inputToCommand != null) {
             String argString = cleanedInput.substring(inputToCommand.length()).trim();
-            return Arrays.asList(inputToCommand, argString);
-        }else{
-            return Arrays.asList(inputToCommand);
+            int argLen = argString.split(" ").length;
+            int numArg = CommandFactory.getCommandType(inputToCommand).getNumArgs();
+            if(numArg == 0 || argLen == numArg){
+                return Arrays.asList(inputToCommand, argString);
+            }
         }
+        return Arrays.asList(null, "");
     }
 }

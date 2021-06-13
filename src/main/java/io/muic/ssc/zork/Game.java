@@ -25,7 +25,6 @@ public class Game {
 
         player = new Player(name);
 
-        isPlaying = true;
     }
 
     public void run() {
@@ -47,6 +46,10 @@ public class Game {
 
     public Player getPlayer() {
         return player;
+    }
+
+    public void play(){
+        isPlaying = true;
     }
 
     public void quit(){
