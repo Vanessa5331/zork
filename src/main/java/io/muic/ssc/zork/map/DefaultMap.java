@@ -3,6 +3,7 @@ package io.muic.ssc.zork.map;
 import io.muic.ssc.zork.item.ItemFactory;
 
 public class DefaultMap implements Map{
+    private Room startRoom;
 
     public DefaultMap() {
         System.out.println("Creating Default Map\nA friendly map for beginners...");
@@ -47,5 +48,12 @@ public class DefaultMap implements Map{
         forest.setExits("east", library);
         forest.setExits("south", dining);
         forest.putItem(ItemFactory.getItem("apple"));
+
+        startRoom = outside;
+    }
+
+    @Override
+    public Room getStartRoom(){
+        return startRoom;
     }
 }

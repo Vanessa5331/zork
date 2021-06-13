@@ -8,6 +8,6 @@ public class InfoCommand implements Command{
     @Override
     public void execute(Game game, List<String> args) {
         game.getPlayer().printStat();
-        //TODO: print room information
+        game.getCurrentRoom().printRoomDescription();
     }
 }

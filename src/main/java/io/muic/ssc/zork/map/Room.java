@@ -18,6 +18,10 @@ public class Room {
         itemList = new HashSet<>();
     }
 
+    public void printRoomDescription() {
+        System.out.println("You are " + description);
+    }
+
     public void setExits(String direction, Room neighbor) {
         possibleExits.put(direction, neighbor);
     }

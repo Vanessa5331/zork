@@ -1,6 +1,7 @@
 package io.muic.ssc.zork.command;
 
 import io.muic.ssc.zork.Game;
+import io.muic.ssc.zork.map.Map;
 import io.muic.ssc.zork.map.MapFactory;
 import io.muic.ssc.zork.map.MapType;
 
@@ -17,9 +18,12 @@ public class PlayCommand implements Command{
 
         for(MapType mapType: MapType.values()){
             if(map.equals(mapType.getMapName())) {
-                MapFactory.createMap(mapType);
-                game.play();
-                break;
+                Map createdMap = MapFactory.createMap(mapType);
+                if(createdMap != null) {
+                    game.setCurrentRoom(createdMap.getStartRoom());
+                    game.play();
+                    break;
+                }
             }
         }
     }

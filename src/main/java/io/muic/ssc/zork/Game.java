@@ -1,6 +1,7 @@
 package io.muic.ssc.zork;
 
 import io.muic.ssc.zork.command.Command;
+import io.muic.ssc.zork.map.Room;
 
 import java.util.List;
 import java.util.Scanner;
@@ -12,6 +13,7 @@ public class Game {
     private final CommandParser commandParser = new CommandParser();
     private boolean isRunning, isPlaying;
     private Player player;
+    private Room currentRoom, nextRoom;
 
     public void init(){
         isRunning = true;
@@ -46,6 +48,22 @@ public class Game {
 
     public Player getPlayer() {
         return player;
+    }
+
+    public Room getCurrentRoom() {
+        return currentRoom;
+    }
+
+    public Room getNextRoom() {
+        return nextRoom;
+    }
+
+    public void setCurrentRoom(Room room) {
+        currentRoom = room;
+    }
+
+    public void setNextRoom(Room room) {
+        nextRoom = room;
     }
 
     public void play(){
