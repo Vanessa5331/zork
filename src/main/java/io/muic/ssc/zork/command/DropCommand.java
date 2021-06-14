@@ -9,7 +9,9 @@ public class DropCommand implements Command{
     public void execute(Game game, List<String> args) {
         String itemName = args.get(0);
 
-        if(!itemName.equals("")){
+        if(itemName.equals("")){
+            System.out.println("Please specify the item you want to drop");
+        } else {
             for(String ownedItem: game.getPlayer().getInventory()){
                 if(itemName.equals(ownedItem)){
                     game.getPlayer().dropItem(itemName);
@@ -18,8 +20,6 @@ public class DropCommand implements Command{
                 }
             }
             System.out.println("There's no such item in your inventory");
-            return;
         }
-        System.out.println("Please specify the item you want to drop");
     }
 }
