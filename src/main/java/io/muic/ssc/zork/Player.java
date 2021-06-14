@@ -4,10 +4,11 @@ import io.muic.ssc.zork.item.ItemFactory;
 import io.muic.ssc.zork.item.ItemType;
 
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 public class Player {
-
+    private static final Random RANDOM = new Random();
     private static final int MAX_HEALTH = 100;
     private static final int MAX_STRENGTH = 100;
     private final String name;
@@ -47,12 +48,12 @@ public class Player {
         return name;
     }
 
-    public int getHealth() {
-        return health;
+    public void printHealth() {
+        System.out.printf("Player %s's HP: %d/%d\n", name, health, MAX_HEALTH);
     }
 
-    public int getStrength() {
-        return strength;
+    public int attack() {
+        return RANDOM.nextInt(strength);
     }
 
     public Set<String> getInventory() {
@@ -69,7 +70,7 @@ public class Player {
     public void receiveDamage(int damage){
         health -= damage;
         if (health <= 0) {
-            System.out.printf("Player %s dies\nReturning to start game", name);
+            health = 0;
             alive = false;
         }
     }

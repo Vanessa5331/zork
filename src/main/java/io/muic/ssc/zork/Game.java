@@ -35,6 +35,7 @@ public class Game {
         String s = in.nextLine();
 
         if(!player.isAlive()) {
+            System.out.printf("Player %s dies\nGAME OVER!", player.getName());
             isPlaying = false;
         }
 

@@ -1,6 +1,7 @@
 package io.muic.ssc.zork.map;
 
 import io.muic.ssc.zork.item.ItemFactory;
+import io.muic.ssc.zork.monster.MonsterType;
 
 public class DefaultMap implements Map{
     private Room startRoom;
@@ -30,12 +31,14 @@ public class DefaultMap implements Map{
 
         dungeon.setExits("north", outside);
         dungeon.setExits("east", storage);
+        dungeon.setMonster(MonsterType.BOSS);
 
         library.setExits("west", forest);
         library.setExits("south", outside);
 
         lab.setExits("west", outside);
         lab.setExits("south", storage);
+        lab.setMonster(MonsterType.COMMON);
 
         storage.setExits("north", lab);
         storage.setExits("west", dungeon);
