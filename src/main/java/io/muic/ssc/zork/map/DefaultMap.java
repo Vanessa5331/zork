@@ -26,7 +26,7 @@ public class DefaultMap implements Map{
         outside.setExits("east", lab);
         outside.setExits("west", dining);
         outside.setExits("south", dungeon);
-        outside.putItem(ItemFactory.getItem("sword"));
+        outside.putItem("sword");
 
         dungeon.setExits("north", outside);
         dungeon.setExits("east", storage);
@@ -39,15 +39,15 @@ public class DefaultMap implements Map{
 
         storage.setExits("north", lab);
         storage.setExits("west", dungeon);
-        storage.putItem(ItemFactory.getItem("shield"));
+        storage.putItem("shield");
 
         dining.setExits("north", forest);
         dining.setExits("east", outside);
-        dining.putItem(ItemFactory.getItem("bread"));
+        dining.putItem("bread");
 
         forest.setExits("east", library);
         forest.setExits("south", dining);
-        forest.putItem(ItemFactory.getItem("apple"));
+        forest.putItem("apple");
 
         startRoom = outside;
     }

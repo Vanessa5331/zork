@@ -13,7 +13,7 @@ public class Game {
     private final CommandParser commandParser = new CommandParser();
     private boolean isRunning, isPlaying;
     private Player player;
-    private Room currentRoom, nextRoom;
+    private Room currentRoom;
 
     public void init(){
         isRunning = true;
@@ -54,16 +54,8 @@ public class Game {
         return currentRoom;
     }
 
-    public Room getNextRoom() {
-        return nextRoom;
-    }
-
     public void setCurrentRoom(Room room) {
         currentRoom = room;
-    }
-
-    public void setNextRoom(Room room) {
-        nextRoom = room;
     }
 
     public void play(){

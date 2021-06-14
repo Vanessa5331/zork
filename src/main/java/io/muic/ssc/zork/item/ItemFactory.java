@@ -1,5 +1,7 @@
 package io.muic.ssc.zork.item;
 
+import io.muic.ssc.zork.command.CommandType;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
@@ -29,6 +31,10 @@ public class ItemFactory {
             }
         }
         return null;
+    }
+
+    public static ItemType getItemType(String itemName){
+        return ITEM_MAP.get(itemName);
     }
 
     public static List<String> getWeapons(){
