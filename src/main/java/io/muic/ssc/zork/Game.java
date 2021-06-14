@@ -33,6 +33,11 @@ public class Game {
         Scanner in = new Scanner(System.in);
         System.out.print(">>> ");
         String s = in.nextLine();
+
+        if(!player.isAlive()) {
+            isPlaying = false;
+        }
+
         List<String> parsedCommands = commandParser.parse(s, isPlaying);
         Command command = CommandFactory.getCommand(parsedCommands.get(0));
         if(command != null){

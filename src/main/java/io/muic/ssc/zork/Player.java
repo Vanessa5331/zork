@@ -12,12 +12,14 @@ public class Player {
     private static final int MAX_STRENGTH = 100;
     private final String name;
     private int health, strength;
+    private boolean alive;
     private Set<String> inventory;
 
     public Player(String name){
         this.name = name;
         this.health = 50;
         this.strength = 10;
+        this.alive = true;
         this.inventory = new HashSet<>();
 
         System.out.printf("Welcome %s !\n", name);
@@ -35,6 +37,10 @@ public class Player {
             System.out.printf("\t[%s]", itemName);
         }
         System.out.println();
+    }
+
+    public boolean isAlive() {
+        return alive;
     }
 
     public String getName() {
@@ -55,10 +61,17 @@ public class Player {
 
     public void gainEnergy(int energy){
         health += energy;
+        if (health >= MAX_HEALTH) {
+            health = MAX_HEALTH;
+        }
     }
 
     public void receiveDamage(int damage){
         health -= damage;
+        if (health <= 0) {
+            System.out.printf("Player %s dies\nReturning to start game", name);
+            alive = false;
+        }
     }
 
     public void gainPower(int power){

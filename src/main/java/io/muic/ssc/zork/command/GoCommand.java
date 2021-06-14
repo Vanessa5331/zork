@@ -13,6 +13,7 @@ public class GoCommand implements Command{
 
         if(nextRoom != null){
             game.setCurrentRoom(nextRoom);
+            game.getPlayer().gainEnergy(5);
             nextRoom.printRoomDescription();
         } else {
             System.out.println("You try to walk away but you're still in the same place...");
