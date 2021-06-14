@@ -8,6 +8,8 @@ public enum CommandType {
     GO("go", GoCommand.class, 1, false, true),
     TAKE("take", TakeCommand.class, 1, false, true),
     DROP("drop", DropCommand.class, 1, false, true),
+    EAT("eat", EatCommand.class, 1, false, true),
+    LOOK("look", LookCommand.class, 0, false, true),
     QUIT("quit", QuitCommand.class, 0, false, true);
 
     private final String commandName;

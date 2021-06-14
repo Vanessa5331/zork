@@ -17,7 +17,7 @@ public class DropCommand implements Command{
                     return;
                 }
             }
-            System.out.println("There's no such item here");
+            System.out.println("There's no such item in your inventory");
             return;
         }
         System.out.println("Please specify the item you want to drop");

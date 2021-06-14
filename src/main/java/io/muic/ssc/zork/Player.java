@@ -81,7 +81,9 @@ public class Player {
         if(itemType.isWeapon()) {
             health -= itemType.getHealth();
             strength -= itemType.getStrength();
+            System.out.printf("Player %s drops [%s]\n", name, itemName);
+        } else if(itemType.isFood()) {
+            System.out.printf("Player %s eats [%s]\n", name, itemName);
         }
-        System.out.printf("Player %s drops [%s]\n", name, itemName);
     }
 }
