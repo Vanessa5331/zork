@@ -5,6 +5,8 @@ public enum CommandType {
     HELP("help", HelpCommand.class, 0, true, true),
     INFO("info", InfoCommand.class, 0, false, true),
     PLAY("play", PlayCommand.class, 1, true, false),
+    LOAD("load", LoadCommand.class, 1, true, false),
+    SAVE("save", SaveCommand.class, 1, false, true),
     GO("go", GoCommand.class, 1, false, true),
     TAKE("take", TakeCommand.class, 1, false, true),
     DROP("drop", DropCommand.class, 1, false, true),

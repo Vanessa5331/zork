@@ -26,6 +26,15 @@ public class Player {
         System.out.printf("Welcome %s !\n", name);
     }
 
+    public Player(Player player){
+        this.name = player.name;
+        this.health = player.health;
+        this.strength = player.strength;
+        this.alive = player.alive;
+        this.inventory = new HashSet<>();
+        this.inventory.addAll(player.inventory);
+    }
+
     public void printStat(){
         System.out.printf("Player: %s\n", name);
         System.out.printf("HP: %d/%d\t\tATK: %d/%d\n", health, MAX_HEALTH, strength, MAX_STRENGTH);

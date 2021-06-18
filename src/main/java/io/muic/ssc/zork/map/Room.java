@@ -25,6 +25,18 @@ public class Room {
         monster = null;
     }
 
+    public Room(Room room) {
+        this.description = room.description;
+        this.possibleExits = new HashMap<>();
+        this.itemList = new HashMap<>();
+        for(String item: room.itemList.keySet()){
+            putItem(item);
+        }
+        if(room.monster != null) {
+            setMonster(room.getMonsterType());
+        }
+    }
+
     public void printRoomDescription() {
         System.out.println("You are " + description);
 
@@ -46,6 +58,10 @@ public class Room {
             System.out.printf(" a %s", monsterName);
             System.out.println();
         }
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public void setExits(String direction, Room neighbor) {

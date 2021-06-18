@@ -20,8 +20,9 @@ public class PlayCommand implements Command{
             if(map.equals(mapType.getMapName())) {
                 Map createdMap = MapFactory.createMap(mapType);
                 if(createdMap != null) {
+                    game.setMap(createdMap);
                     game.setCurrentRoom(createdMap.getStartRoom());
-                    game.play();
+                    game.start();
                     break;
                 }
             }
