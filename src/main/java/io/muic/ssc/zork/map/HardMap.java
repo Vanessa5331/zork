@@ -5,19 +5,19 @@ import io.muic.ssc.zork.monster.MonsterType;
 import java.util.HashSet;
 import java.util.Set;
 
-public class DefaultMap implements Map{
+public class HardMap implements Map{
     private Set<Room> roomSet;
-    private Room outside, dungeon, library, lab, storage, dining, forest;
+    private Room outside, dungeon, library, lab, storage, dining, forest, armory, forbidden;
     private Room startRoom;
 
-    public DefaultMap() {
-        System.out.println("Default Map\nA friendly map for beginners...");
+    public HardMap() {
+        System.out.println("Hard Map\nA challenging map for those who dare...");
         this.roomSet = new HashSet<>();
         create();
         setAllExits();
     }
 
-    public DefaultMap(DefaultMap map, Room currentRoom) {
+    public HardMap(HardMap map, Room currentRoom) {
         this.roomSet = new HashSet<>();
         duplicate(map);
         for(Room room: this.roomSet) {
@@ -37,21 +37,25 @@ public class DefaultMap implements Map{
         storage = new Room("in the storage room");
         dining = new Room("in the dining hall");
         forest = new Room("in the forest");
+        armory = new Room("in the armory");
+        forbidden = new Room("in the forbidden room");
 
-        outside.putItem("sword");
-        storage.putItem("shield");
+        armory.putItem("sword");
+        armory.putItem("shield");
         dining.putItem("bread");
-        forest.putItem("apple");
+        outside.putItem("apple");
 
-        dungeon.setMonster(MonsterType.BOSS);
+        forest.setMonster(MonsterType.BOSS);
+        dungeon.setMonster(MonsterType.COMMON);
         lab.setMonster(MonsterType.COMMON);
+        forbidden.setMonster(MonsterType.COMMON);
 
         startRoom = outside;
 
         addAllRooms();
     }
 
-    public void duplicate(DefaultMap map){
+    public void duplicate(HardMap map){
         this.outside = new Room(map.outside);
         this.dungeon = new Room(map.dungeon);
         this.library = new Room(map.library);
@@ -59,6 +63,8 @@ public class DefaultMap implements Map{
         this.storage = new Room(map.storage);
         this.dining = new Room(map.dining);
         this.forest = new Room(map.forest);
+        this.armory = new Room(map.armory);
+        this.forbidden = new Room(map.forbidden);
 
         this.startRoom = outside;
 
@@ -73,27 +79,37 @@ public class DefaultMap implements Map{
         roomSet.add(storage);
         roomSet.add(dining);
         roomSet.add(forest);
+        roomSet.add(armory);
+        roomSet.add(forbidden);
     }
 
     public void setAllExits() {
-        outside.setExits("north", library);
-        outside.setExits("east", lab);
-        outside.setExits("west", dining);
+        outside.setExits("east", library);
 
-        dungeon.setExits("north", storage);
+        dungeon.setExits("north", armory);
+        dungeon.setExits("south", forbidden);
 
-        library.setExits("north", forest);
-        library.setExits("south", outside);
+        library.setExits("east", lab);
+        library.setExits("west", outside);
+        library.setExits("south", dining);
 
-        lab.setExits("west", outside);
+        lab.setExits("east", armory);
+        lab.setExits("west", library);
         lab.setExits("south", storage);
 
         storage.setExits("north", lab);
-        storage.setExits("south", dungeon);
+        storage.setExits("west", dining);
 
-        dining.setExits("east", outside);
+        dining.setExits("north", library);
+        dining.setExits("east", storage);
 
-        forest.setExits("south", library);
+        forest.setExits("west", forbidden);
+
+        armory.setExits("west", lab);
+        armory.setExits("south", dungeon);
+
+        forbidden.setExits("north", dungeon);
+        forbidden.setExits("east", forest);
     }
 
     @Override

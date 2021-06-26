@@ -1,7 +1,8 @@
 package io.muic.ssc.zork.map;
 
 public enum MapType {
-    DEFAULT("default", DefaultMap.class);
+    DEFAULT("default", DefaultMap.class),
+    HARD("hard", HardMap.class);
 
     String mapName;
     Class<? extends Map> mapClass;

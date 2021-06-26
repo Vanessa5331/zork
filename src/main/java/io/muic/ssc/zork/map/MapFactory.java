@@ -18,6 +18,8 @@ public class MapFactory {
 
         if(mapClass.equals(DefaultMap.class)) {
             return new DefaultMap((DefaultMap) map, currentRoom);
+        } else if (mapClass.equals(HardMap.class)) {
+            return new HardMap((HardMap) map, currentRoom);
         }
 
         return null;

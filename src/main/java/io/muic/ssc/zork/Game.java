@@ -36,7 +36,7 @@ public class Game {
                 "You're invited to the game of Zork\n" +
                 "Your goal is to slay the dragon hidden in the map\n" +
                 "----------------------------------------------------\n" +
-                "Type 'play (default)' to start the game with the selected map\n" +
+                "Type 'play (default/hard)' to start the game with the selected map\n" +
                 "Type 'load [saved-point-name]' to start the game from the saved point\n" +
                 "Type 'help' to see all the available commands\n" +
                 "----------------------------------------------------\n" +
@@ -125,7 +125,13 @@ public class Game {
 
     public void quit(){
         isPlaying = false;
-    }
+        System.out.println("\033[1;33m\n" +
+                "----------------------------------------------------\n" +
+                "Type 'play (default/hard)' to start the game with the selected map\n" +
+                "Type 'load [saved-point-name]' to start the game from the saved point\n" +
+                "Type 'help' to see all the available commands\n" +
+                "----------------------------------------------------\n" +
+                "\033[0m");    }
 
     public void exit(){
         System.exit(0);
